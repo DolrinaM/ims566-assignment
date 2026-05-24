@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=chrome" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - Student Tasks Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="dashboard.html">Student Tasks Management</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
+                    aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
+                        class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
+                    <li><a class="dropdown-item" href="task.html">Tasks</a></li>
+                    <li><a class="dropdown-item" href="assignment.html">Assignments</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="logout.html">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">MAIN</div>
+                        <a class="nav-link" href="dashboard.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboard
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Menu</div>
+                        <a class="nav-link" href="assignment.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Assignment
+                        </a>
+                        <a class="nav-link" href="task.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Task
+                        </a>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Admin
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Dashboard</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-warning text-white mb-4">
+                                <div class="card-body">Pending</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="#">5</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-success text-white mb-4">
+                                <div class="card-body">Completed</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="#">2</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-danger text-white mb-4">
+                                <div class="card-body">Upcoming Deadline</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="#">3</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-xl-3 col-md-6">
+                            <div class="card bg-primary text-white mb-4">
+                                <div class="card-body">Total Tasks</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="#">10</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-area me-1"></i>
+                                    Task Status Overview
+                                </div>
+                                <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Task Lists
+                        </div>
+                        <div class="card-body">
+                            <table id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Title</th>
+                                        <th>Start Date</th>
+                                        <th>Due Date</th>
+                                        <th>Progress Status</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>IMS565 : Project Report</td>
+                                        <td>24/04/2026</td>
+                                        <td>12/06/2026</td>
+                                        <td>Pending</td>
+                                        <td>in progress</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>IMS564 : Group project</td>
+                                        <td>20/05/2026</td>
+                                        <td>14/06/2026</td>
+                                        <td>Pending</td>
+                                        <td>in progress</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>IMS565 : Individual assignment</td>
+                                        <td>06/05/2026</td>
+                                        <td>07/05/2026</td>
+                                        <td>Completed</td>
+                                        <td>dah submit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>IMC571 : Individual assignment (Titktok)</td>
+                                        <td>10/05/2026</td>
+                                        <td>20/05/2026</td>
+                                        <td>Completed</td>
+                                        <td>dah submit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>LCC : Presentation Week 10</td>
+                                        <td>-</td>
+                                        <td>11/06/2026</td>
+                                        <td>Upcoming Deadline</td>
+                                        <td>Not yet start</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>TMC501 : Presentation Week 9</td>
+                                        <td>-</td>
+                                        <td>06/06/2026</td>
+                                        <td>Upcoming Deadline</td>
+                                        <td>Not yet start</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>Buat Gantt chart project</td>
+                                        <td>25/05/2026</td>
+                                        <td>22/06/2026</td>
+                                        <td>Pending</td>
+                                        <td>Not completed</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Final report project</td>
+                                        <td>25/05/2026</td>
+                                        <td>22/06/2026</td>
+                                        <td>Pending</td>
+                                        <td>Not yet start</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>Buat Questionaires</td>
+                                        <td>13/05/2026</td>
+                                        <td>15/06/2026</td>
+                                        <td>Pending</td>
+                                        <td>Belum cukup respondand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>Submit draf dialog role play</td>
+                                        <td>23/05/2026</td>
+                                        <td>06/06/2026</td>
+                                        <td>Upcoming Deadline</td>
+                                        <td>Tengah fikir dialog apa nak buat</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; IMS566 Assignment</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/chart-pie.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+    <script src="js/datatables-simple.js"></script>
+</body>
+
+</html>
